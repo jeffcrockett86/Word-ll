@@ -16,13 +16,20 @@ words = [word.lower() for word in text.split() if len(word) == 5]
 #answer is random word from words
 answer = words[random.randint(0, len(words))]
 
+def validate(guess):
+   if re.match(r'^[A-Za-z]{5}$', guess):
+     print ('match')
+   else:
+     print ('no match')
 #make sure guess's length is 5 and it only has letters
-def validate_and_check(guess):
-    if re.match(f'^[a-zA-Z]{5}$', guess):
-        for letter in word:
-            check(letter)
-    else:
-       print('asdf')
+# def validate_and_check(guess):
+#     if re.match(f'^[a-zA-Z]{5}$', guess):
+#         for letter in word:
+#             check(letter)
+#     else:
+#        print('asdf')
+
+# validate = guess: re.match(r'^[A-Za-z]{5}$', guess)
 
 #check returns the letter but with the right color
 def check(letter):
@@ -37,9 +44,9 @@ print(termcolor. colored('---', 'red') + ' means wrong letter wrong place')
 print(termcolor. colored('---', 'white') + ' means wrong letter wrong place')
 print(termcolor. colored('---', 'yellow') + ' means right letter wrong place')
 
-guess = ''.join(input('_ _ _ _ _'.split())
+guess = 'azzzz'
 print(guess)
-while(guess != answer):
-    validate_and_check(guess)
-print('You win!')
+# while(guess != answer):
+#     validate_and_check(guess)
+# print('You win!')
 # check([letter for letter in guess]]
