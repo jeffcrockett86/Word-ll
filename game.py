@@ -64,7 +64,7 @@ def check(guess, guess_count=0):
                 continue
 
         guess = input(''.join(row) + '\n\n')
-        print('guess is', guess)
+        # print('guess is', guess)
         # guess_count += 1
         print('guess count is', guess_count)
         guess = str(guess[:5])
