@@ -8,13 +8,18 @@ f = open('computer.txt', 'r')
 #turn the file's text into a string
 text = f.read()
 
-print(text)
+# print(text)
 
 #generate 5 letter words from the text file
 words = [word.lower() for word in text.split() if len(word) == 5]
-
+print(words)
 #answer is random word from words
-answer = words[random.randint(0, len(words))]
+# answer = words[random.randint(0, len(words)-1)]
+
+def display_instructions():
+    print(termcolor. colored('---', 'red') + ' means wrong letter wrong place\n')
+    print(termcolor. colored('---', 'white') + ' means wrong letter wrong place\n')
+    print(termcolor. colored('---', 'yellow') + ' means right letter wrong place\n')
 
 def validate(guess):
    if re.match(r'^[A-Za-z]{5}$', guess):
@@ -40,13 +45,23 @@ def check(letter):
     else:
         return input(termcolor.colored(letter, 'white'))
 
-print(termcolor. colored('---', 'red') + ' means wrong letter wrong place')
-print(termcolor. colored('---', 'white') + ' means wrong letter wrong place')
-print(termcolor. colored('---', 'yellow') + ' means right letter wrong place')
+#display the instructions
+def display_instructions():
+    print(termcolor. colored('---', 'red') + ' means wrong letter wrong place')
+    print(termcolor. colored('---', 'white') + ' means wrong letter wrong place')
+    print(termcolor. colored('---', 'yellow') + ' means right letter wrong place')
+inp = input("Welcome to Word'll! Press x to see instructions. Press any other key to begin.")
+if inp.lower() == 'x':
+    display_instructions()
 
+else:
+    validate(inp)
+
+answer = 'apple'
 guess = 'azzzz'
 print(guess)
-# while(guess != answer):
-#     validate_and_check(guess)
+while(guess != answer):
+    validate(guess)
+    break
 # print('You win!')
 # check([letter for letter in guess]]
