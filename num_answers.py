@@ -58,16 +58,16 @@ def letter_in_guess_and_answer(letter, guess, answer):
     return letter in guess and letter in answer
 
 
-def filter_list(ls, guess, answer):
-    return set(filter((lambda x: x in guess and x in answer), ls))
+# def filter_list(ls, guess, answer):
+#     return set(filter((lambda x: x in guess and x in answer), ls))
 
 
-def run_guesses(guesses):
+def run_guesses(guess):
     f = open('wordleAlpha.txt', 'r')
     words = [word for word in f.read().split('\n')][:-1]
-    word_list = []
+
     tries = 0
-    print(guesses)
+    print(guess)
     answer = words[random.randint(0, len(words) - 1)]
     # print(type(words[random.randint(0, len(words) - 1)]))
     print('answer is', answer)
@@ -75,38 +75,50 @@ def run_guesses(guesses):
     #     tries += 1
     print(f'Guess {tries}')
 
-    for guess in guesses:
-        # print('guess is', guess)
+    # for guess in guesses:
+    # print('guess is', guess)
 
-        bool_tuples = [(letter,letter_in_guess_and_answer(letter, guess, answer)) for letter in guess]
-        print('bool_tuples is', bool_tuples)
-        # print('bool_tuples is', bool_tuples)
-        words = [item[0] for item in bool_tuples if item[1]]
-        print('words is', words)
-        # print(words)
+    bool_tuples = [(letter,letter_in_guess_and_answer(letter, guess, answer)) for letter in guess]
+    print('bool_tuples is', bool_tuples)
+    # print('bool_tuples is', bool_tuples)
+    words = [item[0] for item in bool_tuples if item[1]]
+    print('words is', words)
+    # print(words)
 
-            # words = list(filter(letter_in_word, words))
-            # print('words is', words)
-            # word_list.append(words)
-            # print(word_list)
-        if len(words) > 0:
-                continue
-        if len(words) == 1:
-                print("You win!")
-                return bool_tuples
+        # words = list(filter(letter_in_word, words))
+        # print('words is', words)
+        # word_list.append(words)
+        # print(word_list)
+    # if len(words) > 0:
+    #     continue
+    if len(words) == 1:
+        print("You win!")
+        return bool_tuples
 
     letters_in_common = [tup[0] for tup in bool_tuples if tup[1]]
     d = {letter: words_with(letter) for letter in letters_in_common}
     # return letters_in_common
     return d
 
-letters = run_guesses(sys.argv[1:])
+def play_game(word_list, num_guesses=0):
+    letters = run_guesses(sys.argv[1])
+    # print(letters)
+    # print('letters.keys() is', letters.keys())
+    print(set([word for ls in letters.values() for word in ls]))
+    # available_words = [word for ls in letters.values() for word in ls]
+    # print("There are", len(available_words), 'words left', available_words )
+
+    # if num_guesses == 6:
+    #     return 'You lose!'
+    # num_guesses += 1
+    # return play_game(available_words, num_guesses=num_guesses)
 # print(letters)
-print("There are", len(set([word for ls in letters.values() for word in ls])), 'words left', set([word for ls in letters.values() for word in ls]) )
-# available_words = set([letters.values()])
+
+# print(run_guesses)
 # print(available_words)
 # print(letters.items())
 # print('words with e:', words_with('est'))
 # print([words_with(letter) for letter in letters])
 
 # print([pair[0] for pair in run_guesses(sys.argv[1]) ])
+print(play_game(words))
