@@ -4,32 +4,7 @@ import random
 
 f = open('wordleAlpha.txt', 'r')
 words = [word for word in f.read().split('\n')][:-1]
-# def gen_dict():
 
-#     # print(words)
-
-#     a = 97
-#     z = 123
-#     alphabet = [chr(i) for i in range(a, z)]
-#     #print(alphabet)
-
-#     # string = ''.join(words)
-#     # tuples = sorted([(letter, len(re.findall(f"{letter}", string)) / 2315) for letter in alphabet], key=lambda x: x[1])
-
-#     # print(tuples)
-
-#     list1 = [pair[0] for pair in tuples]
-#     list2 = [pair[1] for pair in tuples]
-
-#     sorted_vowels = dict(zip(list1, list2))
-#     # print(sorted_vowels)
-#     percentages = ["{0:.0%}".format(item) for item in list2]
-#     new_sorted_vowels = dict(zip(list1, percentages))
-#     return new_sorted_vowels
-
-
-# def look_up_percentage(letter):
-#     return gen_dict()[letter]
 
 def gen_tuples(letter):
     return [(word,len(re.findall(re.compile(letter), word))) for word in words]
@@ -91,9 +66,9 @@ def run_guesses(guess):
         # print(word_list)
     # if len(words) > 0:
     #     continue
-    if len(words) == 1:
-        print("You win!")
-        return bool_tuples
+    # if len(words) == 1:
+    #     print("You win!")
+    #     return bool_tuples
 
     letters_in_common = [tup[0] for tup in bool_tuples if tup[1]]
     d = {letter: words_with(letter) for letter in letters_in_common}
@@ -101,10 +76,15 @@ def run_guesses(guess):
     return d
 
 def play_game(word_list, num_guesses=0):
+    s = {}
     letters = run_guesses(sys.argv[1])
+    for key in letters:
+        print(len(letters[key]))
+
+    # print(letters)
     # print(letters)
     # print('letters.keys() is', letters.keys())
-    print(set([word for ls in letters.values() for word in ls]))
+    # print(set([word for ls in letters.values() for word in ls]))
     # available_words = [word for ls in letters.values() for word in ls]
     # print("There are", len(available_words), 'words left', available_words )
 
@@ -122,3 +102,29 @@ def play_game(word_list, num_guesses=0):
 
 # print([pair[0] for pair in run_guesses(sys.argv[1]) ])
 print(play_game(words))
+# def gen_dict():
+
+#     # print(words)
+
+#     a = 97
+#     z = 123
+#     alphabet = [chr(i) for i in range(a, z)]
+#     #print(alphabet)
+
+#     # string = ''.join(words)
+#     # tuples = sorted([(letter, len(re.findall(f"{letter}", string)) / 2315) for letter in alphabet], key=lambda x: x[1])
+
+#     # print(tuples)
+
+#     list1 = [pair[0] for pair in tuples]
+#     list2 = [pair[1] for pair in tuples]
+
+#     sorted_vowels = dict(zip(list1, list2))
+#     # print(sorted_vowels)
+#     percentages = ["{0:.0%}".format(item) for item in list2]
+#     new_sorted_vowels = dict(zip(list1, percentages))
+#     return new_sorted_vowels
+
+
+# def look_up_percentage(letter):
+#     return gen_dict()[letter]
