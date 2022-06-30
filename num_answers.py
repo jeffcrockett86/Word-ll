@@ -1,6 +1,6 @@
 import sys
 import re
-
+import random
 
 f = open('wordleAlpha.txt', 'r')
 words = [word for word in f.read().split('\n')][:-1]
@@ -54,23 +54,59 @@ def words_with(letter):
 # words = words_with('s')
 # print(words)
 
+def letter_in_word(letter, guess, answer):
+    return letter in guess and letter in answer
+
+
+def filter_list(ls, guess, answer):
+    return set(filter((lambda x: x in guess and x in answer), ls))
+
+
 def run_guesses(guesses):
     f = open('wordleAlpha.txt', 'r')
     words = [word for word in f.read().split('\n')][:-1]
-
-    tries = 1
+    word_list = []
+    tries = 0
     print(guesses)
-    while(tries <= 6):
-        print(f'Guess {tries}')
-        tries += 1
-        for guess in guesses:
-            for letter in guess:
+    answer = words[random.randint(0, len(words) - 1)]
+    print(type(words[random.randint(0, len(words) - 1)]))
+    print('answer is', answer)
+    # while(tries <= 5):
+    #     tries += 1
+    print(f'Guess {tries}')
 
-                #narrow down list of words
+    for guess in guesses:
+        # print('guess is', guess)
 
-                words = list(filter(lambda word: letter in word, words))
-                if len(words) > 0:
-                    print(words)
-    return words
+        bool_tuples = [(letter,letter_in_word(letter, guess, answer)) for letter in guess]
+        print('bool_tuples is', bool_tuples)
+        # print('bool_tuples is', bool_tuples)
+        words = [item[0] for item in bool_tuples if item[1]]
+        print('words is', words)
+        # print(words)
 
-run_guesses(sys.argv[1:])
+            # words = list(filter(letter_in_word, words))
+            # print('words is', words)
+            # word_list.append(words)
+            # print(word_list)
+        if len(words) > 0:
+                continue
+        if len(words) == 1:
+                print("You win!")
+                return bool_tuples
+
+    letters_in_common = [tup[0] for tup in bool_tuples if tup[1]]
+    d = {letter: words_with(letter) for letter in letters_in_common}
+    # return letters_in_common
+    return d
+
+letters = run_guesses(sys.argv[1:])
+# print(letters)
+print("There are", len(set([word for ls in letters.values() for word in ls])), 'words left')
+# available_words = set([letters.values()])
+# print(available_words)
+# print(letters.items())
+# print('words with e:', words_with('est'))
+# print([words_with(letter) for letter in letters])
+
+# print([pair[0] for pair in run_guesses(sys.argv[1]) ])
