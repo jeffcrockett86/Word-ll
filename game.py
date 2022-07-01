@@ -35,7 +35,7 @@ def orange_and_green(word):
 
     return output
 
-print(orange_and_green('holly')[0][0] == set(words_with('h')))
+print([list(orange_and_green('hxxxx'))[0][i] for i in range(2)][0] == set(words_with('h')))
 # def play(word, guess_num, words=words):
 #     guess_num += 1
 #     print('word is', word)
