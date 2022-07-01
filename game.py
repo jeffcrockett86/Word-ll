@@ -9,6 +9,8 @@ f = open('wordleAlpha.txt', 'r')
 sys.argv = ['slant', 'guest', 'reach', 'whirl']
 words = [word for word in f.read().split('\n')][:-1]
 answer = 'hello'
+def func(letter, words=words):
+    return list(filter(lambda x: x[0] == letter, words))
 
 
 # def yellow(letter, words=words):
@@ -33,7 +35,9 @@ def yellow(letter, words):
 g = green('h', words)
 pairs = [x for x in g if len(x) > 0]
 new_words = [pair[0] for pair in pairs]
-print(len(new_words[0]))
+dups = set([x[0] for x in new_words])
+# print(set([x[0] for x in [set(new_words[i]) for i in range(len(new_words))]]))
+
 # new_words_beta =
 # def orange_and_green(word, words=words):
 #     output = []
