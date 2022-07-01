@@ -9,8 +9,14 @@ f = open('wordleAlpha.txt', 'r')
 sys.argv = ['slant', 'guest', 'reach', 'whirl']
 words = [word for word in f.read().split('\n')][:-1]
 answer = 'hello'
+guess = 'holly'
+
+def k(letter):
+    x = [letter for letter in set(func('a')) for letter in guess]
+    print(x)
+    return x
+
 """
->>> [j for j in set(func('e'))]
 ['eagle', 'event', 'elbow', 'ethic', 'eying', 'elate', 'enjoy',
 'enter', 'evict', 'elude', 'expel', 'ember', 'early', 'envoy',
 'epoxy', 'erase', 'error', 'erupt', 'elegy', 'embed', 'eking', 'elide',
@@ -22,14 +28,15 @@ answer = 'hello'
 'equal', 'easel', 'email', 'erode', 'etude', 'eight', 'exert', 'eaten',
 'essay', 'elite']
 """
+
 def func(letter, words=words):
-    return list(filter(lambda x: x[0] == letter, words))
+    return set(filter(lambda x: x[0] == letter, words))
 
 
 # def yellow(letter, words=words):
 #     return [(word, i) for i in range(len(words)) if word[i] in answer and word[i] != answer[i]]
 
-def green(letter, words):
+def green(letter, words=words):
     output = []
     for word in words:
         for i in range(len(word)):
