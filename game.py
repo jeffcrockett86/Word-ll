@@ -28,14 +28,14 @@ def orange_and_green(word):
         set1 = set(words_with(word[i]))
         set2 = set(words_with(word[i+1]))
         output.append((set1, set2))
-        print(output[-1])
+        # print(output[-1])
         # output = list(set(output[-1][0] & output[-1][1]))
         output.append(word[i])
         # print('output[index] is', output[i])
 
     return output
 
-
+print(orange_and_green('holly')[0][0] == set(words_with('h')))
 # def play(word, guess_num, words=words):
 #     guess_num += 1
 #     print('word is', word)
