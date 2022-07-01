@@ -6,5 +6,5 @@ Instructions:
 
 1. Clone the repo
 2. cd into the repo
-3. Type python game.py into the command line
+3. Type python3 game.py into the command line
 4. It will print True
