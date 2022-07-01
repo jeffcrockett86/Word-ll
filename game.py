@@ -38,11 +38,17 @@ def k(letter):
 'extra', 'elder', 'enema', 'enact', 'emcee', 'ennui', 'excel', 'exile',
 'equal', 'easel', 'email', 'erode', 'etude', 'eight', 'exert', 'eaten',
 'essay', 'elite']
+
+>>> u1 = func('h') | func('x') | func ('x') | func('l')  | func('o')
+>>> u2 = func('h') | func('x') | func ('x') | func('l')  | func('o')
+
 """
 
+#func returns the set of all letters that are in the filtered list
 def func(letter, words=words):
     return set(filter(lambda x: x[0] == letter, words))
 
+# for i in range(5):
 
 # def yellow(letter, words=words):
 #     return [(word, i) for i in range(len(words)) if word[i] in answer and word[i] != answer[i]]
