@@ -1,6 +1,17 @@
 import sys
 import random
 
+"""
+s = s[0]
+>>> s[0]
+s = list(s)
+s = set([k(letter) for letter in guess])
+
+>>> s
+{'hollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyhollyholly'}
+>>> s = set([k(letter) for letter in guess])
+"""
+
 # >>> set(word_matches('h')) & set(word_matches('e'))& set(word_matches('l')) & set(word_matches('o'))
 # {'hello', 'hovel', 'hotel', 'whole'}
 
@@ -14,7 +25,7 @@ guess = 'holly'
 def k(letter):
     x = [letter for letter in set(func('a')) for letter in guess]
     print(x)
-    return x
+    return ''.join(x)
 
 """
 ['eagle', 'event', 'elbow', 'ethic', 'eying', 'elate', 'enjoy',
