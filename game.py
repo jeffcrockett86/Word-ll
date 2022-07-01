@@ -33,6 +33,8 @@ def yellow(letter, words):
 g = green('h', words)
 pairs = [x for x in g if len(x) > 0]
 new_words = [pair[0] for pair in pairs]
+print(len(new_words[0]))
+# new_words_beta =
 # def orange_and_green(word, words=words):
 #     output = []
 #     for i in range(len(word) - 1):
