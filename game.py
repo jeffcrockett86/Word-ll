@@ -27,6 +27,9 @@ def k(letter):
     print(x)
     return ''.join(x)
 
+v = lambda letter: len(k(letter))
+score = lambda letter: len(k(letter)) / len(guess)
+print('v is', v('h'))
 """
 ['eagle', 'event', 'elbow', 'ethic', 'eying', 'elate', 'enjoy',
 'enter', 'evict', 'elude', 'expel', 'ember', 'early', 'envoy',
@@ -43,12 +46,14 @@ def k(letter):
 >>> u2 = func('h') | func('x') | func ('x') | func('l')  | func('o')
 
 """
-
 #func returns the set of all letters that are in the filtered list
 def func(letter, words=words):
-    return set(filter(lambda x: x[0] == letter, words))
+    return set(filter(lambda x: x[0] in letter, words))
 
 # for i in range(5):
+u1 = func('h') | func('x') | func ('x') | func('l')  | func('o')
+u2 = func('h') | func('x') | func ('x') | func('l')  | func('o')
+
 
 # def yellow(letter, words=words):
 #     return [(word, i) for i in range(len(words)) if word[i] in answer and word[i] != answer[i]]
