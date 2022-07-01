@@ -32,10 +32,11 @@ def yellow(letter, words):
     # return [(word, i) for i in range(len(words)) if word[i] in answer and word[i] != answer[i]]
     return output
 
-g = green('h', words)
-pairs = [x for x in g if len(x) > 0]
+g = green('he', words)
+pairs = [x[0] for x in g if len(x) > 0]
 new_words = [pair[0] for pair in pairs]
 dups = set([x[0] for x in new_words])
+q = lambda x: [func(x) for x in list(dups)][2]
 # print(set([x[0] for x in [set(new_words[i]) for i in range(len(new_words))]]))
 
 # new_words_beta =
