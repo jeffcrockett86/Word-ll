@@ -1,6 +1,9 @@
 import sys
 import random
 
+# >>> set(word_matches('h')) & set(word_matches('e'))& set(word_matches('l')) & set(word_matches('o'))
+# {'hello', 'hovel', 'hotel', 'whole'}
+
 
 f = open('wordleAlpha.txt', 'r')
 sys.argv = ['slant', 'guest', 'reach', 'whirl']
@@ -8,17 +11,36 @@ words = [word for word in f.read().split('\n')][:-1]
 answer = 'hello'
 
 
-def words_with(letter, words=words):
-    return [word for word in words if letter in word and letter in answer]
+# def yellow(letter, words=words):
+#     return [(word, i) for i in range(len(words)) if word[i] in answer and word[i] != answer[i]]
 
-
-def orange_and_green(word):
+def green(letter, words):
     output = []
-    for i in range(len(word) - 1):
-        set1 = set(words_with(word[i]))
-        set2 = set(words_with(word[i+1]))
-        output.append((set1, set2))
-        output.append(word[i])
+    for word in words:
+        for i in range(len(word)):
+            output.append([[word, i] for i in range(len(word)) if word[i] in answer and word[i] == answer[i]])
+    # return [(word, i) for i in range(len(words)) if word[i] in answer and word[i] != answer[i]]
     return output
 
-print([list(orange_and_green('hxxxx'))[0][i] for i in range(2)][0] == set(words_with('h')))
+def yellow(letter, words):
+    output = []
+    for word in words:
+        for i in range(len(word)):
+            output.append([[word, i] for i in range(len(word)) if word[i] in answer and word[i] != answer[i]])
+    # return [(word, i) for i in range(len(words)) if word[i] in answer and word[i] != answer[i]]
+    return output
+
+g = green('h', words)
+pairs = [x for x in g if len(x) > 0]
+new_words = [pair[0] for pair in pairs]
+# def orange_and_green(word, words=words):
+#     output = []
+#     for i in range(len(word) - 1):
+#         set1 = set(word_matches(word[i]))
+#         set2 = set(word_matches(word[i+1]))
+#         output.append((set1, set2))
+#         output.append(word[i])
+#     return output
+
+
+# test = [orange_and_green(word)[0][0] for word in sys.argv]
